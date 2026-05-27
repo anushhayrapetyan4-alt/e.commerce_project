@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS newchic_analytics;
+
+CREATE DATABASE newchic_analytics;
+USE newchic_analytics;
+
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(500) NOT NULL,
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+CREATE TABLE product_stats (
+    stat_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    original_price DECIMAL(10, 2),
+    sale_price DECIMAL(10, 2),
+    discount_rate INT,
+    review_count INT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
