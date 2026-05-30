@@ -66,12 +66,20 @@ The project includes SQL queries for:
 ## Project Structure
 
 ```text
-SQL_Scripts/
+project/
 │
-├── 01_schema_setup.sql
-├── 02_data_cleaning.sql
-└── 03_analytics_queries.sql
-
+├── data/
+│   ├── customers.csv
+│   ├── products.csv
+│   └── orders.csv
+│
+├── SQL_Scripts/
+│   ├── 01_schema_setup.sql
+│   ├── 02_data_cleaning.sql
+│   └── 03_analytics_queries.sql
+│
+├── README.md
+└── requirements.txt   (եթե Python կա)
 README.md
 ```
 
