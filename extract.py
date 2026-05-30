@@ -1,12 +1,15 @@
 import pandas as pd
 
 
-def extract_raw_data(table_name, engine):
-    print(f"1. Extract: Վերցնում ենք տվյալները '{table_name}' աղյուսակից...")
+def extract_raw_data(table_name: str, engine) -> pd.DataFrame:
+    """
+    Extract data from a database table.
+    """
 
-    df = pd.read_sql(
-        f"SELECT * FROM ecommerce_db.{table_name}",
-        con=engine
-    )
+    print(f"Extracting data from {table_name}...")
 
-    return df
+    query = f"SELECT * FROM ecommerce_db.{table_name}"
+
+    dataframe = pd.read_sql(query, con=engine)
+
+    return dataframe
