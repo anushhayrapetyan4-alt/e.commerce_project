@@ -38,7 +38,7 @@ The project utilizes a Star-Schema relational structure to maintain high perform
 ## Repository Structure
 ```text
 ├── SQL_Scripts/
-│   ├── 01_schema_setup.sql       # DDL scripts for table generation
-│   ├── 02_data_cleaning.sql      # Trimming and casting scripts
-│   └── 03_analytics_queries.sql  # Window functions & aggregations
-└── README.md                     # Documentation
+│   ├── 01_schema_setup.sql       
+│   ├── 02_data_cleaning.sql    
+│   └── 03_analytics_queries.sql  
+└── README.md                     
