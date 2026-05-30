@@ -13,20 +13,20 @@ The project utilizes a Star-Schema relational structure to maintain high perform
 
 
 
-### 1. `customers` (Dimension Table)
+### 1. customers 
 * `customer_id` (INT, PK) — Unique identifier for each customer.
 * `customer_name` (VARCHAR) — Full name of the user.
 * `country` (VARCHAR) — Customer's geographical location.
 * `signup_date` (DATE) — Date the user registered on NewChic.
 
-### 2. `products` (Dimension Table)
+### 2. products 
 * `product_id` (INT, PK) — Unique product identifier.
 * `product_name` (VARCHAR) — Item description (e.g., "Vintage Linen Shirt").
 * `category` (VARCHAR) — Clothing/Accessory category.
 * `price` (NUMERIC) — Price per unit in USD.
 * `size` (VARCHAR) — Raw product size attributes (contains noisy data like ' xl ', 'L').
 
-### 3. `orders` (Fact Table)
+### 3. orders
 * `order_id` (INT, PK) — Unique order transaction ID.
 * `customer_id` (INT, FK) — References `customers`.
 * `product_id` (INT, FK) — References `products`.
