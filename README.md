@@ -8,13 +8,6 @@ The pipeline handles data definition, automated cleaning constraints, and advanc
 
 ---
 
-## Tech Stack
-* **Database/Warehouse:** PostgreSQL / AWS Redshift
-* **Language:** SQL (DDL & DML)
-* **Core Concepts:** Schema Design, Data Cleaning, Window Functions, Common Table Expressions (CTEs)
-
----
-
 ## Data Architecture & Schema Design
 The project utilizes a Star-Schema relational structure to maintain high performance during analytical querying.
 
