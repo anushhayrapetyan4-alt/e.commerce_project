@@ -1,52 +1,21 @@
 from sqlalchemy import create_engine
-
 from extract import extract_raw_data
-from transform import transform_data
-from load import load_to_mysql
+from transform import clean_product_sizes
+from load import load_to_database
 
 
-if __name__ == "__main__":
+engine = create_engine(
+    "mysql+pymysql://root:password@localhost/ecommerce_db"
+)
 
-    # !!! ՓՈԽԻՐ PASSWORD-Ը ՔՈ MYSQL ԳԱՂՏՆԱԲԱՌՈՎ !!!
-    db_connection_str = 'mysql+pymysql://root:PASSWORD@localhost:3306/'
+products = extract_raw_data("products", engine)
 
-    try:
-        raw_engine = create_engine(
-            db_connection_str + 'ecommerce_db'
-        )
+products = clean_product_sizes(products)
 
-        analytics_engine = create_engine(
-            db_connection_str + 'newchic_analytics'
-        )
+load_to_database(
+    products,
+    "products_clean",
+    engine
+)
 
-        tables = [
-            'men',
-            'bags',
-            'beauty',
-            'house',
-            'jewelry',
-            'kids',
-            'shoes'
-        ]
-
-        print("=== ETL ՊԱՅՓԼԱՅՆԸ ՍԿՍՎԵՑ ===\n")
-
-        for t in tables:
-            raw_data = extract_raw_data(t, raw_engine)
-
-            cats, prods, stats = transform_data(
-                raw_data,
-                category_name=t.capitalize()
-            )
-
-            load_to_mysql(
-                cats,
-                prods,
-                stats,
-                analytics_engine
-            )
-
-        print("=== ETL ՊԱՅՓԼԱՅՆԸ ՀԱՋՈՂՈՒԹՅԱՄԲ ԱՎԱՐՏՎԵՑ ===")
-
-    except Exception as e:
-        print(f"🔴 Սխալ տեղի ունեցավ. {e}")
+print("Pipeline completed successfully.")
